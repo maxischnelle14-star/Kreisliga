@@ -10,25 +10,25 @@
     <style>
         -webkit-touch-callout: none;
         user-select: none;
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #121212; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-slate-900 text-white min-h-screen flex flex-col pb-6">
+<body class="bg-black text-white min-h-screen flex flex-col pb-6">
 
     <!-- Header & Spieluhr Steuerung -->
-    <header class="bg-slate-800 border-b border-slate-700 p-3 sticky top-0 z-50 shadow-md">
+    <header class="bg-zinc-900 border-b border-zinc-800 p-3 sticky top-0 z-50 shadow-md">
         <div class="max-w-md mx-auto flex flex-col gap-2">
             <div class="flex justify-between items-center">
                 <div>
                     <h1 class="text-xs font-bold text-red-500 tracking-wider uppercase">Kickbase Kreisliga</h1>
-                    <p id="match-status" class="text-[10px] text-slate-400 font-medium">Bereit für Anpfiff</p>
+                    <p id="match-status" class="text-[10px] text-zinc-400 font-medium">Bereit für Anpfiff</p>
                 </div>
                 <!-- Timer Display -->
-                <div class="flex items-center gap-2 bg-slate-900 px-3 py-1 rounded-xl border border-slate-700">
+                <div class="flex items-center gap-2 bg-black px-3 py-1 rounded-xl border border-zinc-800">
                     <span id="timer-display" class="font-mono text-xl font-extrabold text-emerald-400">00:00</span>
-                    <span id="minute-display" class="text-xs font-bold text-slate-400 border-l border-slate-700 pl-2">(0')</span>
+                    <span id="minute-display" class="text-xs font-bold text-zinc-400 border-l border-zinc-800 pl-2">(0')</span>
                 </div>
             </div>
 
@@ -43,7 +43,7 @@
                 <button id="btn-finish" onclick="finishGame()" class="flex-1 bg-rose-600 hover:bg-rose-500 text-white text-xs py-1.5 rounded-lg font-bold transition active:scale-95 shadow">
                     🏁 Abpfiff
                 </button>
-                <button onclick="resetGame()" class="bg-slate-700 hover:bg-slate-600 text-slate-300 text-xs px-2.5 py-1.5 rounded-lg font-bold transition active:scale-95">
+                <button onclick="resetGame()" class="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs px-2.5 py-1.5 rounded-lg font-bold transition active:scale-95">
                     🔄
                 </button>
             </div>
@@ -54,12 +54,12 @@
 
         <!-- Header Actions: Spieler hinzufügen & Teilen -->
         <div class="flex justify-between items-center">
-            <span class="text-xs font-bold uppercase text-slate-400 tracking-wider">Spieler-Kader</span>
+            <span class="text-xs font-bold uppercase text-zinc-400 tracking-wider">Spieler-Kader</span>
             <div class="flex gap-2">
                 <button onclick="addPlayer()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs px-2.5 py-1 rounded-full font-semibold transition active:scale-95">
                     ➕ Spieler
                 </button>
-                <button onclick="shareScore()" class="bg-green-600 hover:bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold transition active:scale-95">
+                <button onclick="shareScore()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-1 rounded-full font-semibold transition active:scale-95">
                     📲 Teilen
                 </button>
             </div>
@@ -72,17 +72,17 @@
 
         <!-- Search Bar -->
         <div class="relative">
-            <input type="text" id="search-input" onkeyup="filterActions()" placeholder="🔍 Aktion suchen (z.B. Tor, Pass, Foul)..." class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-red-500">
+            <input type="text" id="search-input" onkeyup="filterActions()" placeholder="🔍 Aktion suchen (z.B. Tor, Pass, Foul)..." class="w-full bg-zinc-900 border border-zinc-800 text-white rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-red-500">
         </div>
 
         <!-- Category Tabs -->
         <div class="flex gap-1 overflow-x-auto no-scrollbar pb-1 text-xs font-medium">
             <button onclick="setTab('all', this)" class="tab-btn bg-red-600 text-white px-3 py-1.5 rounded-lg whitespace-nowrap">Alle</button>
-            <button onclick="setTab('scorer', this)" class="tab-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg whitespace-nowrap">⚽ Scorer & Pässe</button>
-            <button onclick="setTab('def', this)" class="tab-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg whitespace-nowrap">🛡️ Zweikampf & Def</button>
-            <button onclick="setTab('tw', this)" class="tab-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg whitespace-nowrap">🧤 Torwart</button>
-            <button onclick="setTab('pen', this)" class="tab-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg whitespace-nowrap">⚠️ Strafen & Fehler</button>
-            <button onclick="setTab('kreisliga', this)" class="tab-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg whitespace-nowrap">🍺 Kreisliga Specials</button>
+            <button onclick="setTab('scorer', this)" class="tab-btn bg-zinc-900 text-zinc-300 px-3 py-1.5 rounded-lg whitespace-nowrap">⚽ Scorer & Pässe</button>
+            <button onclick="setTab('def', this)" class="tab-btn bg-zinc-900 text-zinc-300 px-3 py-1.5 rounded-lg whitespace-nowrap">🛡️ Zweikampf & Def</button>
+            <button onclick="setTab('tw', this)" class="tab-btn bg-zinc-900 text-zinc-300 px-3 py-1.5 rounded-lg whitespace-nowrap">🧤 Torwart</button>
+            <button onclick="setTab('pen', this)" class="tab-btn bg-zinc-900 text-zinc-300 px-3 py-1.5 rounded-lg whitespace-nowrap">⚠️ Strafen & Fehler</button>
+            <button onclick="setTab('kreisliga', this)" class="tab-btn bg-zinc-900 text-zinc-300 px-3 py-1.5 rounded-lg whitespace-nowrap">🍺 Kreisliga Specials</button>
         </div>
 
         <!-- Action Grid -->
@@ -91,49 +91,48 @@
         </div>
 
         <!-- Live Ticker / History -->
-        <div class="bg-slate-800 rounded-2xl p-3 border border-slate-700 flex-1 flex flex-col min-h-[140px]">
+        <div class="bg-zinc-900 rounded-2xl p-3 border border-zinc-800 flex-1 flex flex-col min-h-[140px]">
             <div class="flex justify-between items-center mb-2">
-                <span class="text-xs font-bold uppercase text-slate-400 tracking-wider">Live-Protokoll (nach Minuten)</span>
+                <span class="text-xs font-bold uppercase text-zinc-400 tracking-wider">Live-Protokoll (nach Minuten)</span>
                 <button onclick="undoLastAction()" class="text-xs text-amber-400 hover:underline">↩ Letzte Aktion rückgängig</button>
             </div>
             <div id="ticker-list" class="flex-1 overflow-y-auto space-y-1.5 text-xs max-h-[160px]">
-                <div class="text-slate-500 italic text-center py-4">Noch keine Aktionen erfasst...</div>
+                <div class="text-zinc-500 italic text-center py-4">Noch keine Aktionen erfasst...</div>
             </div>
         </div>
 
     </div>
 
-    <!-- ABSCHLUSS-MODAL (End-Screen mit Spieler-Details) -->
-    <div id="end-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-700 rounded-3xl p-5 w-full max-w-md max-h-[90vh] flex flex-col shadow-2xl">
-            <div class="text-center mb-4">
-                <div class="text-3xl mb-1">🏆</div>
-                <h2 class="text-xl font-extrabold text-white">SCHLUSSPFIFF!</h2>
-                <p class="text-xs text-slate-400">Kreisliga Kickbase Auswertung</p>
-                <p class="text-[10px] text-amber-400 mt-1">💡 Tippe auf einen Spieler für seine Minuten-Aktionen</p>
+    <!-- ABSCHLUSS-MODAL (Original Kickbase Vertikal-Balken Look) -->
+    <div id="end-modal" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-3">
+        <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-4 w-full max-w-md max-h-[92vh] flex flex-col justify-between shadow-2xl overflow-hidden">
+            
+            <div class="text-center mb-2">
+                <span class="text-xs font-bold text-red-500 tracking-widest uppercase">SPIELTAGS-LEISTUNG</span>
+                <h2 class="text-lg font-extrabold text-white">SCHLUSSPFIFF</h2>
             </div>
 
-            <!-- Rangliste -->
-            <div id="final-scoreboard" class="flex flex-col gap-2 overflow-y-auto max-h-[220px] mb-4 pr-1">
-                <!-- Ranked Players generated by JS -->
+            <!-- ORIGINAL KICKBASE BAR CHART CONTAINER -->
+            <div id="kickbase-bars-container" class="flex justify-around items-end h-[280px] bg-zinc-900/50 rounded-2xl p-4 border border-zinc-800/80 my-2 gap-2 overflow-x-auto">
+                <!-- Vertical Bars dynamically inserted here -->
             </div>
 
             <!-- Detail-Ansicht für ausgewählten Spieler -->
-            <div id="player-detail-box" class="hidden bg-slate-800 rounded-2xl p-3 border border-slate-700 flex-1 flex flex-col overflow-hidden mb-4">
-                <div class="flex justify-between items-center pb-2 border-b border-slate-700 mb-2">
-                    <h3 id="detail-player-name" class="font-bold text-sm text-red-400">Spieler Details</h3>
-                    <span id="detail-player-score" class="font-extrabold text-sm text-emerald-400">0 Pkt.</span>
+            <div id="player-detail-box" class="bg-zinc-900 rounded-2xl p-3 border border-zinc-800 flex flex-col overflow-hidden my-1">
+                <div class="flex justify-between items-center pb-1 border-b border-zinc-800 mb-2">
+                    <h3 id="detail-player-name" class="font-bold text-xs text-red-400">Spieler Details</h3>
+                    <span id="detail-player-score" class="font-extrabold text-xs text-emerald-400">0 Pkt.</span>
                 </div>
-                <div id="detail-actions-list" class="overflow-y-auto space-y-1.5 text-xs max-h-[140px] pr-1">
+                <div id="detail-actions-list" class="overflow-y-auto space-y-1 text-[11px] max-h-[100px] pr-1">
                     <!-- Dynamic timeline of player actions -->
                 </div>
             </div>
 
-            <div class="flex gap-2">
-                <button onclick="shareScore()" class="flex-1 bg-green-600 hover:bg-green-500 text-white font-bold py-2.5 rounded-xl text-xs transition active:scale-95 flex justify-center items-center gap-1">
-                    <span>📲 Tabelle Teilen</span>
+            <div class="flex gap-2 mt-2">
+                <button onclick="shareScore()" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-xs transition active:scale-95 flex justify-center items-center gap-1">
+                    <span>📲 Spieltag Teilen</span>
                 </button>
-                <button onclick="closeEndModal()" class="bg-slate-700 hover:bg-slate-600 text-slate-200 font-bold px-4 py-2.5 rounded-xl text-xs transition active:scale-95">
+                <button onclick="closeEndModal()" class="bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-bold px-4 py-2.5 rounded-xl text-xs transition active:scale-95">
                     Schließen
                 </button>
             </div>
@@ -141,9 +140,7 @@
     </div>
 
     <script>
-        // --- 1. FULL KICKBASE ACTIONS CATALOG ---
         const actions = [
-            // Scorer & Pässe
             { name: "Tor (ST/MF)", pts: 80, cat: "scorer" },
             { name: "Tor (ABW)", pts: 100, cat: "scorer" },
             { name: "Tor (TW)", pts: 120, cat: "scorer" },
@@ -162,8 +159,6 @@
             { name: "Pass vorderes Drittel", pts: 1, cat: "scorer" },
             { name: "Präziser langer Ball", pts: 1, cat: "scorer" },
             { name: "Flanke erfolgreich", pts: 3, cat: "scorer" },
-
-            // Zweikampf & Defensiv
             { name: "Gewonnener Zweikampf", pts: 5, cat: "def" },
             { name: "Ballgewinn / Geklärt", pts: 5, cat: "def" },
             { name: "Gegner ausgedribbelt", pts: 5, cat: "def" },
@@ -171,15 +166,11 @@
             { name: "Auf der Linie geklärt", pts: 15, cat: "def" },
             { name: "Zweikampf letzter Mann", pts: 15, cat: "def" },
             { name: "Ecke rausgeholt", pts: 1, cat: "def" },
-
-            // Torwart
             { name: "Parade / Großchance", pts: 15, cat: "tw" },
             { name: "Schuss gehalten", pts: 10, cat: "tw" },
             { name: "Ball gefangen", pts: 10, cat: "tw" },
             { name: "Elfmeter gehalten", pts: 100, cat: "tw" },
             { name: "Erfolgreicher Abwurf", pts: 1, cat: "tw" },
-
-            // Fehler & Strafen
             { name: "Pass verloren / Fehlpass", pts: -1, cat: "pen" },
             { name: "Foulspiel", pts: -2, cat: "pen" },
             { name: "Ausgespielt worden", pts: -3, cat: "pen" },
@@ -193,8 +184,6 @@
             { name: "Eigentor", pts: -60, cat: "pen" },
             { name: "Elfmeter verschossen", pts: -60, cat: "pen" },
             { name: "Rote Karte", pts: -75, cat: "pen" },
-
-            // Kreisliga Specials
             { name: "Kiste Bier versprochen", pts: 150, cat: "kreisliga" },
             { name: "Gegner ins Aus gegrätscht", pts: 40, cat: "kreisliga" },
             { name: "Tunnel kassiert", pts: -30, cat: "kreisliga" },
@@ -202,7 +191,6 @@
             { name: "Ball über den Zaun gebolzt", pts: -20, cat: "kreisliga" }
         ];
 
-        // --- 2. STATE STORAGE ---
         let players = JSON.parse(localStorage.getItem('kl_players_multi')) || [
             { id: 1, name: "Spieler 1" },
             { id: 2, name: "Spieler 2" }
@@ -211,23 +199,19 @@
         let currentTab = 'all';
         let logs = JSON.parse(localStorage.getItem('kl_logs_multi')) || [];
 
-        // Timer States
         let timerInterval = null;
         let secondsElapsed = parseInt(localStorage.getItem('kl_timer_sec')) || 0;
         let isTimerRunning = false;
 
-        // --- 3. TIMER ENGINE ---
         function toggleTimer() {
             const btn = document.getElementById('btn-start');
             if (isTimerRunning) {
-                // Pause
                 clearInterval(timerInterval);
                 isTimerRunning = false;
                 btn.innerText = "▶ Weiter";
                 btn.className = "flex-1 bg-emerald-600 hover:bg-emerald-500 text-white text-xs py-1.5 rounded-lg font-bold transition active:scale-95 shadow";
                 document.getElementById('match-status').innerText = "Spiel pausiert";
             } else {
-                // Start
                 timerInterval = setInterval(() => {
                     secondsElapsed++;
                     localStorage.setItem('kl_timer_sec', secondsElapsed);
@@ -235,7 +219,7 @@
                 }, 1000);
                 isTimerRunning = true;
                 btn.innerText = "⏸ Pause";
-                btn.className = "flex-1 bg-slate-600 hover:bg-slate-500 text-white text-xs py-1.5 rounded-lg font-bold transition active:scale-95 shadow";
+                btn.className = "flex-1 bg-zinc-700 hover:bg-zinc-600 text-white text-xs py-1.5 rounded-lg font-bold transition active:scale-95 shadow";
                 document.getElementById('match-status').innerText = "🔴 Live - Spiel läuft";
             }
         }
@@ -243,7 +227,7 @@
         function setHalftime() {
             clearInterval(timerInterval);
             isTimerRunning = false;
-            secondsElapsed = 45 * 60; // Jump to 45 mins
+            secondsElapsed = 45 * 60;
             localStorage.setItem('kl_timer_sec', secondsElapsed);
             updateTimerDisplay();
             document.getElementById('btn-start').innerText = "▶ 2. Halbzeit";
@@ -254,10 +238,7 @@
         function updateTimerDisplay() {
             const mins = Math.floor(secondsElapsed / 60);
             const secs = secondsElapsed % 60;
-            const formatMins = String(mins).padStart(2, '0');
-            const formatSecs = String(secs).padStart(2, '0');
-            
-            document.getElementById('timer-display').innerText = `${formatMins}:${formatSecs}`;
+            document.getElementById('timer-display').innerText = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
             document.getElementById('minute-display').innerText = `(${mins + 1}')`;
         }
 
@@ -265,11 +246,9 @@
             return Math.floor(secondsElapsed / 60) + 1;
         }
 
-        // --- 4. DYNAMIC PLAYERS MANAGEMENT ---
         function addPlayer() {
             const newId = Date.now();
-            const newName = `Spieler ${players.length + 1}`;
-            players.push({ id: newId, name: newName });
+            players.push({ id: newId, name: `Spieler ${players.length + 1}` });
             activePlayerId = newId;
             saveData();
             renderPlayers();
@@ -278,11 +257,8 @@
 
         function removePlayer(id, event) {
             event.stopPropagation();
-            if (players.length <= 1) {
-                alert("Es muss mindestens ein Spieler vorhanden sein!");
-                return;
-            }
-            if (confirm("Möchtest du diesen Spieler wirklich löschen?")) {
+            if (players.length <= 1) return alert("Es muss mindestens ein Spieler vorhanden sein!");
+            if (confirm("Spieler löschen?")) {
                 players = players.filter(p => p.id !== id);
                 if (activePlayerId === id) activePlayerId = players[0].id;
                 saveData();
@@ -293,11 +269,7 @@
 
         function updatePlayerName(id, newName) {
             const player = players.find(p => p.id === id);
-            if (player) {
-                player.name = newName;
-                saveData();
-                updateUI();
-            }
+            if (player) { player.name = newName; saveData(); updateUI(); }
         }
 
         function renderPlayers() {
@@ -308,14 +280,14 @@
                 const isActive = p.id === activePlayerId;
                 const card = document.createElement('div');
                 card.onclick = () => { activePlayerId = p.id; renderPlayers(); };
-                card.className = `p-2.5 rounded-2xl bg-slate-800 border-2 transition-all shadow-md relative cursor-pointer ${
+                card.className = `p-2.5 rounded-2xl bg-zinc-900 border-2 transition-all shadow-md relative cursor-pointer ${
                     isActive ? 'border-red-500' : 'border-transparent'
                 }`;
 
                 card.innerHTML = `
                     <div class="flex justify-between items-center gap-1">
-                        <input type="text" value="${p.name}" onchange="updatePlayerName(${p.id}, this.value)" onclick="event.stopPropagation()" class="bg-transparent font-bold text-xs text-white w-full border-b border-slate-600 pb-0.5 focus:outline-none focus:border-red-500">
-                        <button onclick="removePlayer(${p.id}, event)" class="text-slate-500 hover:text-rose-500 text-xs px-1 font-bold">✕</button>
+                        <input type="text" value="${p.name}" onchange="updatePlayerName(${p.id}, this.value)" onclick="event.stopPropagation()" class="bg-transparent font-bold text-xs text-white w-full border-b border-zinc-700 pb-0.5 focus:outline-none focus:border-red-500">
+                        <button onclick="removePlayer(${p.id}, event)" class="text-zinc-500 hover:text-rose-500 text-xs px-1 font-bold">✕</button>
                     </div>
                     <div class="text-2xl font-extrabold mt-1 text-white" id="score-p-${p.id}">0</div>
                     ${isActive ? '<span class="absolute bottom-2 right-2 text-[9px] bg-red-500 text-white font-bold px-1.5 py-0.2 rounded-full">AKTIV</span>' : ''}
@@ -324,7 +296,6 @@
             });
         }
 
-        // --- 5. ACTION GRID & TABS ---
         function renderActions() {
             const grid = document.getElementById('actions-grid');
             grid.innerHTML = '';
@@ -335,13 +306,11 @@
                     const btn = document.createElement('button');
                     const isPos = act.pts >= 0;
                     btn.className = `p-2 rounded-xl text-left border flex justify-between items-center transition active:scale-95 ${
-                        isPos 
-                          ? 'bg-slate-800 border-emerald-500/30 hover:border-emerald-500 text-emerald-400' 
-                          : 'bg-slate-800 border-rose-500/30 hover:border-rose-500 text-rose-400'
+                        isPos ? 'bg-zinc-900 border-emerald-500/30 text-emerald-400' : 'bg-zinc-900 border-rose-500/30 text-rose-400'
                     }`;
                     btn.onclick = () => addPoints(act.name, act.pts);
                     btn.innerHTML = `
-                        <span class="text-xs font-semibold text-slate-200">${act.name}</span>
+                        <span class="text-xs font-semibold text-zinc-200">${act.name}</span>
                         <span class="text-xs font-bold px-1.5 py-0.5 rounded ${isPos ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'}">${act.pts > 0 ? '+' + act.pts : act.pts}</span>
                     `;
                     grid.appendChild(btn);
@@ -351,43 +320,27 @@
 
         function setTab(tab, element) {
             currentTab = tab;
-            document.querySelectorAll('.tab-btn').forEach(b => {
-                b.className = 'tab-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg whitespace-nowrap';
-            });
+            document.querySelectorAll('.tab-btn').forEach(b => b.className = 'tab-btn bg-zinc-900 text-zinc-300 px-3 py-1.5 rounded-lg whitespace-nowrap');
             element.className = 'tab-btn bg-red-600 text-white px-3 py-1.5 rounded-lg whitespace-nowrap';
             renderActions();
         }
 
         function filterActions() { renderActions(); }
 
-        // --- 6. CORE ENGINE & UPDATES ---
         function addPoints(actionName, pts) {
             const player = players.find(p => p.id === activePlayerId);
             if (!player) return;
-
-            const minute = getCurrentMinute();
-
-            logs.unshift({
-                playerId: activePlayerId,
-                playerName: player.name,
-                action: actionName,
-                pts: pts,
-                minute: minute
-            });
+            logs.unshift({ playerId: activePlayerId, playerName: player.name, action: actionName, pts: pts, minute: getCurrentMinute() });
             saveData();
             updateUI();
         }
 
         function undoLastAction() {
-            if (logs.length > 0) {
-                logs.shift();
-                saveData();
-                updateUI();
-            }
+            if (logs.length > 0) { logs.shift(); saveData(); updateUI(); }
         }
 
         function resetGame() {
-            if (confirm("Möchtest du das Spiel und die Spieluhr wirklich zurücksetzen? Alle Punkte verfallen!")) {
+            if (confirm("Spiel zurücksetzen?")) {
                 clearInterval(timerInterval);
                 isTimerRunning = false;
                 secondsElapsed = 0;
@@ -395,7 +348,6 @@
                 document.getElementById('btn-start').innerText = "▶ Anpfiff";
                 document.getElementById('match-status').innerText = "Bereit für Anpfiff";
                 updateTimerDisplay();
-
                 logs = [];
                 saveData();
                 updateUI();
@@ -410,31 +362,22 @@
         function updateUI() {
             const scores = {};
             players.forEach(p => scores[p.id] = 0);
-
             const tickerList = document.getElementById('ticker-list');
             tickerList.innerHTML = '';
 
             logs.forEach(log => {
-                if (scores[log.playerId] !== undefined) {
-                    scores[log.playerId] += log.pts;
-                }
-
+                if (scores[log.playerId] !== undefined) scores[log.playerId] += log.pts;
                 const item = document.createElement('div');
                 const isPos = log.pts >= 0;
-                item.className = 'flex justify-between items-center p-1.5 bg-slate-900/60 rounded-lg border border-slate-700/50';
+                item.className = 'flex justify-between items-center p-1.5 bg-black/60 rounded-lg border border-zinc-800/80';
                 item.innerHTML = `
-                    <span class="font-medium text-slate-300">
-                        <span class="text-slate-500 font-mono mr-1">${log.minute}'</span> 
-                        <strong class="text-red-400">${log.playerName}</strong>: ${log.action}
-                    </span>
+                    <span class="font-medium text-zinc-300"><span class="text-zinc-500 font-mono mr-1">${log.minute}'</span> <strong class="text-red-400">${log.playerName}</strong>: ${log.action}</span>
                     <span class="font-bold ${isPos ? 'text-emerald-400' : 'text-rose-400'}">${isPos ? '+' + log.pts : log.pts}</span>
                 `;
                 tickerList.appendChild(item);
             });
 
-            if (logs.length === 0) {
-                tickerList.innerHTML = '<div class="text-slate-500 italic text-center py-4">Noch keine Aktionen erfasst...</div>';
-            }
+            if (logs.length === 0) tickerList.innerHTML = '<div class="text-zinc-500 italic text-center py-4">Noch keine Aktionen erfasst...</div>';
 
             players.forEach(p => {
                 const elem = document.getElementById(`score-p-${p.id}`);
@@ -442,48 +385,71 @@
             });
         }
 
-        // --- 7. END-GAME MODAL & PLAYER DETAILS CHRONICLE ---
+        // --- END-GAME WITH ORIGINAL KICKBASE VERTICAL BARS ---
         function finishGame() {
             clearInterval(timerInterval);
             isTimerRunning = false;
             document.getElementById('match-status').innerText = "🏁 Spiel Beendet";
 
-            // Compute Scores
+            const playedMinutes = Math.floor(secondsElapsed / 60) || 90;
+
             const playerScores = players.map(p => {
                 const total = logs.filter(l => l.playerId === p.id).reduce((sum, l) => sum + l.pts, 0);
                 return { ...p, score: total };
             });
 
-            // Sort by Rank
-            playerScores.sort((a, b) => b.score - a.score);
+            // Find Max Points for Bar Height Calculation (Default scale up to 300 Pts)
+            const highestScore = Math.max(...playerScores.map(p => Math.abs(p.score)), 150);
+            const container = document.getElementById('kickbase-bars-container');
+            container.innerHTML = '';
 
-            const scoreboard = document.getElementById('final-scoreboard');
-            scoreboard.innerHTML = '';
+            playerScores.forEach((p) => {
+                // Determine Bar Color Style according to Kickbase thresholds
+                let barColorClass = "bg-emerald-400";
+                let textColorClass = "text-emerald-400";
 
-            const medals = ['🥇', '🥈', '🥉'];
+                if (p.score > 150) {
+                    barColorClass = "bg-amber-400"; // Gold MVP Bar
+                    textColorClass = "text-amber-400";
+                } else if (p.score >= 80) {
+                    barColorClass = "bg-emerald-400"; // Bright Green
+                    textColorClass = "text-emerald-400";
+                } else if (p.score >= 0) {
+                    barColorClass = "bg-emerald-500/80"; // Medium Green
+                    textColorClass = "text-emerald-400";
+                } else {
+                    barColorClass = "bg-rose-500"; // Red Negative
+                    textColorClass = "text-rose-400";
+                }
 
-            playerScores.forEach((p, idx) => {
-                const card = document.createElement('div');
-                card.onclick = () => showPlayerDetails(p.id, p.name, p.score);
-                card.className = "flex justify-between items-center p-3 rounded-2xl bg-slate-800 border border-slate-700 hover:border-red-500 transition cursor-pointer active:scale-98 shadow";
-                
-                card.innerHTML = `
-                    <div class="flex items-center gap-2">
-                        <span class="text-lg font-bold">${medals[idx] || (idx + 1) + '.'}</span>
-                        <div>
-                            <div class="font-extrabold text-sm text-white">${p.name}</div>
-                            <div class="text-[10px] text-slate-400">Tippe für Minuten-Details ➔</div>
+                // Height Percentage (Max 100%, Min 5% so it's visible)
+                const heightPercent = Math.min(Math.max((Math.abs(p.score) / highestScore) * 100, 6), 100);
+
+                const col = document.createElement('div');
+                col.onclick = () => showPlayerDetails(p.id, p.name, p.score);
+                col.className = "flex flex-col items-center justify-end h-full flex-1 cursor-pointer transition active:scale-95 group min-w-[60px]";
+
+                col.innerHTML = `
+                    <div class="text-xs font-bold text-zinc-300 mb-1 truncate max-w-[60px] text-center">${p.name}</div>
+                    
+                    <!-- BAR TRACK -->
+                    <div class="w-10 bg-zinc-800/80 rounded-xl flex flex-col justify-end p-1 overflow-hidden h-[180px] relative border border-zinc-700/50">
+                        <!-- FILLED BAR -->
+                        <div class="${barColorClass} w-full rounded-lg transition-all duration-700 flex flex-col items-center justify-end py-1 shadow-lg" style="height: ${heightPercent}%;">
+                            ${p.score > 150 ? '<span class="text-[10px] mb-1">👟</span>' : ''}
                         </div>
                     </div>
-                    <span class="text-base font-extrabold ${p.score >= 0 ? 'text-emerald-400' : 'text-rose-400'}">${p.score} Pkt.</span>
+
+                    <!-- FOOTER INFO (POINTS & MINUTES) -->
+                    <div class="text-center mt-2">
+                        <div class="text-sm font-extrabold ${textColorClass}">${p.score}</div>
+                        <div class="text-[10px] text-zinc-500 font-mono">${playedMinutes}'</div>
+                    </div>
                 `;
-                scoreboard.appendChild(card);
+                container.appendChild(col);
             });
 
-            // Hide previous player detail view when opening modal
-            document.getElementById('player-detail-box').classList.add('hidden');
-
-            // Auto-open first place details if available
+            // Open first player details by default
             if (playerScores.length > 0) {
                 showPlayerDetails(playerScores[0].id, playerScores[0].name, playerScores[0].score);
             }
@@ -493,30 +459,24 @@
 
         function showPlayerDetails(playerId, playerName, totalScore) {
             const detailBox = document.getElementById('player-detail-box');
-            const detailName = document.getElementById('detail-player-name');
+            document.getElementById('detail-player-name').innerText = `📋 ${playerName}`;
             const detailScore = document.getElementById('detail-player-score');
-            const detailList = document.getElementById('detail-actions-list');
-
-            detailName.innerText = `📋 ${playerName}`;
             detailScore.innerText = `${totalScore} Pkt.`;
-            detailScore.className = `font-extrabold text-sm ${totalScore >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
+            detailScore.className = `font-extrabold text-xs ${totalScore >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
 
-            // Filter player logs and sort by minute ASC
             const playerLogs = logs.filter(l => l.playerId === playerId).slice().reverse();
-
+            const detailList = document.getElementById('detail-actions-list');
             detailList.innerHTML = '';
 
             if (playerLogs.length === 0) {
-                detailList.innerHTML = '<div class="text-slate-500 italic text-center py-2 text-xs">Keine Aktionen in diesem Spiel.</div>';
+                detailList.innerHTML = '<div class="text-zinc-500 italic text-center py-2 text-xs">Keine Aktionen in diesem Spiel.</div>';
             } else {
                 playerLogs.forEach(log => {
                     const isPos = log.pts >= 0;
                     const item = document.createElement('div');
-                    item.className = 'flex justify-between items-center p-1.5 bg-slate-900/80 rounded-lg border border-slate-700/50 text-xs';
+                    item.className = 'flex justify-between items-center p-1 bg-black/60 rounded border border-zinc-800/80 text-[11px]';
                     item.innerHTML = `
-                        <span class="text-slate-300">
-                            <strong class="text-amber-400 font-mono">${log.minute}'</strong> ${log.action}
-                        </span>
+                        <span class="text-zinc-300"><strong class="text-amber-400 font-mono">${log.minute}'</strong> ${log.action}</span>
                         <span class="font-bold ${isPos ? 'text-emerald-400' : 'text-rose-400'}">${isPos ? '+' + log.pts : log.pts}</span>
                     `;
                     detailList.appendChild(item);
@@ -526,30 +486,19 @@
             detailBox.classList.remove('hidden');
         }
 
-        function closeEndModal() {
-            document.getElementById('end-modal').classList.add('hidden');
+        function closeEndModal() { 
+            document.getElementById('end-modal').classList.add('hidden'); 
         }
 
         function shareScore() {
             let text = `⚽ *Kreisliga Kickbase Auswertung* ⚽\n⏱️ Spieldauer: ${Math.floor(secondsElapsed / 60)} Min.\n\n`;
-            
-            const playerScores = players.map(p => {
-                const total = logs.filter(l => l.playerId === p.id).reduce((sum, l) => sum + l.pts, 0);
-                return { ...p, score: total };
-            }).sort((a, b) => b.score - a.score);
+            const playerScores = players.map(p => ({ ...p, score: logs.filter(l => l.playerId === p.id).reduce((sum, l) => sum + l.pts, 0) })).sort((a, b) => b.score - a.score);
+            playerScores.forEach((p, i) => { text += `${i + 1}. ${p.name}: ${p.score} Pkt.\n`; });
 
-            playerScores.forEach((p, i) => {
-                text += `${i + 1}. ${p.name}: ${p.score} Pkt.\n`;
-            });
-
-            if (navigator.share) {
-                navigator.share({ title: 'Kreisliga Kickbase', text: text });
-            } else {
-                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`);
-            }
+            if (navigator.share) navigator.share({ title: 'Kreisliga Kickbase', text: text });
+            else window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`);
         }
 
-        // Init
         updateTimerDisplay();
         renderPlayers();
         renderActions();
